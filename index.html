@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Peekmoji — the daily hidden emoji puzzle</title>
-<meta name="description" content="A new hidden emoji every day in every category. Peek as few times as you can, guess it, and share your score.">
-<meta property="og:title" content="Peekmoji 👀">
-<meta property="og:description" content="Guess the hidden emoji in as few peeks as possible. New puzzles every day.">
+<meta name="description" content="6 hidden emojis every day. Hold the spyglass as briefly as you can, guess each one, and share your time.">
+<meta property="og:title" content="Peekmoji 🔭">
+<meta property="og:description" content="Guess 6 hidden emojis using the spyglass as little as possible. New puzzles every day.">
 <meta name="theme-color" content="#ff5a36">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👀</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
@@ -17,25 +17,27 @@
 :root{--bg:#fff6ea;--card:#fff;--ink:#1f1b2e;--muted:#6f6a80;--line:#efe4d4;--accent:#ff5a36;--accent-dark:#c7391c;--accent2:#7b61ff;--good:#16a263;--bad:#e5484d;--cover:#2a2540;--dot:#3d3560;--reveal:#fffdf8;--shadow:0 10px 30px rgba(60,30,10,.13)}
 @media (prefers-color-scheme:dark){:root{--bg:#15131d;--card:#211e2c;--ink:#f3f0ff;--muted:#a39db8;--line:#332e43;--cover:#2f2946;--dot:#453c68;--reveal:#f4f0e8;--shadow:0 10px 30px rgba(0,0,0,.45)}}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:600 16px/1.4 "Nunito",ui-rounded,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 16px;-webkit-tap-highlight-color:transparent}
 button{font-family:inherit}
+a{color:var(--accent2)}
 .top{width:100%;max-width:480px;display:flex;align-items:center;justify-content:space-between;padding:14px 0 4px}
 .logo{font:700 2.1rem/1 "Fredoka",ui-rounded,system-ui,sans-serif;margin:0;letter-spacing:-.5px}
 .logo span{color:var(--accent)}
 .icon-btn{width:42px;height:42px;border-radius:13px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:700 1.1rem "Fredoka",system-ui,sans-serif;cursor:pointer}
 .wrap{width:100%;max-width:480px;display:flex;flex-direction:column;gap:12px;flex:1}
 .sub{margin:0;text-align:center;color:var(--muted);font-weight:800}
-.sub a{color:var(--accent2);cursor:pointer}
+.sub a{cursor:pointer}
 .cats{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 6px;scrollbar-width:none}
 .cats::-webkit-scrollbar{display:none}
 .cat{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:8px 13px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:800;font-size:.9rem;cursor:pointer}
 .cat[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
 .board-wrap{position:relative;width:100%;max-width:400px;margin:0 auto;aspect-ratio:1}
-#board{width:100%;height:100%;display:block;border-radius:26px;box-shadow:var(--shadow);cursor:crosshair;touch-action:manipulation}
+#board{width:100%;height:100%;display:block;border-radius:26px;box-shadow:var(--shadow);cursor:zoom-in;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .hint{position:absolute;left:0;right:0;bottom:18px;text-align:center;color:#fff;font-weight:800;pointer-events:none;text-shadow:0 2px 8px rgba(0,0,0,.5);animation:bob 1.6s ease-in-out infinite}
-.meter{display:flex;justify-content:center;gap:20px;color:var(--muted);font-weight:800;font-size:.95rem}
-.meter b{color:var(--ink);font-size:1.15rem;display:inline-block}
+.meter{display:flex;justify-content:center;gap:18px;color:var(--muted);font-weight:800;font-size:.95rem;flex-wrap:wrap}
+.meter b{color:var(--ink);font-size:1.15rem;display:inline-block;font-variant-numeric:tabular-nums}
 .meter b.pop{animation:pop .25s}
 .guess{display:flex;gap:8px}
 .field{position:relative;flex:1}
@@ -53,6 +55,7 @@ button{font-family:inherit}
 .tried{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:-4px}
 .tried span{padding:3px 10px;border-radius:999px;background:var(--line);color:var(--muted);text-decoration:line-through;font-size:.85rem;font-weight:800}
 .link{background:none;border:0;color:var(--muted);text-decoration:underline;font-weight:800;cursor:pointer;align-self:center;padding:4px}
+.promo{display:block;text-align:center;padding:12px;border-radius:15px;border:2px dashed var(--line);font-weight:800;text-decoration:none}
 .ad-slot{min-height:90px;display:flex;justify-content:center}
 .ad-slot:empty{display:none}
 footer{padding:22px 0;color:var(--muted);font-size:.85rem;text-align:center}
@@ -61,14 +64,14 @@ dialog::backdrop{background:rgba(20,15,30,.55);backdrop-filter:blur(3px)}
 dialog h2{font:700 1.5rem "Fredoka",system-ui,sans-serif;margin:0 0 12px;text-align:center}
 dialog ol{padding-left:1.2em;margin:0 0 16px}dialog li{margin:6px 0}
 .close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--line);color:var(--ink);cursor:pointer;font-weight:800}
-.big{font-size:5.5rem;text-align:center;line-height:1.1;animation:pop .5s}
+.big{font-size:4.5rem;text-align:center;line-height:1.1;animation:pop .5s}
 .rank{text-align:center;font:700 1.15rem "Fredoka",system-ui,sans-serif;color:var(--accent);margin:4px 0}
 .detail{text-align:center;color:var(--muted);margin:0 0 12px}
 .share-preview{white-space:pre-wrap;background:var(--bg);border-radius:15px;padding:12px 14px;margin:0 0 14px;font:700 .95rem/1.5 "Nunito",system-ui,sans-serif;word-break:break-word}
 .row{display:flex;gap:8px;flex-wrap:wrap}.row .btn{flex:1 1 40%}
-.countdown-line{text-align:center;color:var(--muted);font-size:.9rem;margin:14px 0 0}
+.countdown-line{text-align:center;color:var(--muted);font-size:.9rem;margin:14px 0 10px}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:4px;margin-bottom:16px}
-.stats-grid b{display:block;font:700 1.7rem "Fredoka",system-ui,sans-serif}
+.stats-grid b{display:block;font:700 1.5rem "Fredoka",system-ui,sans-serif}
 .stats-grid span{font-size:.75rem;color:var(--muted)}
 .today{display:grid;grid-template-columns:1fr auto;gap:6px 12px}
 .toast{position:fixed;top:18px;left:50%;transform:translate(-50%,-160%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:800;transition:transform .25s;z-index:99}
@@ -90,18 +93,18 @@ dialog ol{padding-left:1.2em;margin:0 0 16px}dialog li{margin:6px 0}
   <p class="sub" id="sub"></p>
   <nav class="cats" id="cats" aria-label="Categories"></nav>
   <div class="ad-slot" id="ad-top"><!-- ADS: paste a responsive ad unit here --></div>
-  <section class="board-wrap" id="boardWrap">
-    <canvas id="board" aria-label="Hidden emoji board. Tap to peek."></canvas>
-    <div class="hint" id="hint">Tap anywhere to peek 👆</div>
+  <section class="board-wrap">
+    <canvas id="board" aria-label="Hidden emoji. Press and hold to look through the spyglass."></canvas>
+    <div class="hint" id="hint">Press &amp; hold to look 🔭</div>
   </section>
   <div class="meter">
-    <span>👆 Peeks <b id="peeks">0</b></span>
+    <span>⏱ Looked <b id="looked">0.0s</b></span>
     <span>❌ Misses <b id="misses">0</b></span>
-    <span>⭐ Score <b id="score">0</b></span>
+    <span>🏁 Today <b id="total">0.0s</b></span>
   </div>
   <form class="guess" id="guessForm" autocomplete="off">
     <div class="field">
-      <input id="guessInput" placeholder="What is it?" aria-label="Your guess" autocapitalize="off" spellcheck="false">
+      <input id="guessInput" placeholder="What is it?" aria-label="Your guess" autocapitalize="off" spellcheck="false" enterkeyhint="go">
       <ul class="suggest" id="suggest" hidden></ul>
     </div>
     <button type="submit" class="btn primary" id="guessBtn">Guess</button>
@@ -109,36 +112,37 @@ dialog ol{padding-left:1.2em;margin:0 0 16px}dialog li{margin:6px 0}
   <p class="msg" id="msg"></p>
   <div class="tried" id="tried"></div>
   <button class="link" id="giveUp" type="button">Give up</button>
+  <a class="promo" href="timescope/">🌍 New game: <b>Timescope</b> — guess where &amp; when a photo was taken →</a>
   <div class="ad-slot" id="ad-bottom"><!-- ADS: paste a second ad unit here --></div>
 </main>
 
 <footer>New puzzles every day at midnight · <span class="countdown"></span></footer>
 
-<dialog id="resultDlg">
+<dialog id="doneDlg">
   <form method="dialog"><button class="close" aria-label="Close">✕</button></form>
-  <div class="big" id="resEmoji"></div>
-  <h2 id="resTitle"></h2>
-  <p class="rank" id="resRank"></p>
-  <p class="detail" id="resDetail"></p>
-  <pre class="share-preview" id="resShare"></pre>
+  <div class="big">🏁</div>
+  <h2 id="doneTitle">Daily complete!</h2>
+  <p class="rank" id="doneRank"></p>
+  <p class="detail" id="doneDetail"></p>
+  <pre class="share-preview" id="doneShare"></pre>
   <div class="row">
     <button class="btn primary" id="shareBtn" autofocus>Share 📤</button>
-    <button class="btn" id="nextBtn">Next ➡️</button>
     <button class="btn" id="practiceBtn">Practice 🎲</button>
   </div>
   <p class="countdown-line">Next puzzles in <b class="countdown"></b></p>
+  <a class="promo" href="timescope/">🌍 Try <b>Timescope</b> — where &amp; when was this photo taken?</a>
 </dialog>
 
 <dialog id="helpDlg">
   <form method="dialog"><button class="close" aria-label="Close">✕</button></form>
-  <h2>How to play 👀</h2>
+  <h2>How to play 🔭</h2>
   <ol>
-    <li>A giant emoji is hiding under the cover.</li>
-    <li><b>Tap to peek.</b> Each tap reveals a small circle. That's <b>+1</b> to your score.</li>
-    <li><b>Guess anytime.</b> A wrong guess is also <b>+1</b>.</li>
-    <li><b>Lowest score wins.</b> Every category gets a new puzzle each day, and everyone gets the same one.</li>
+    <li>Every day there's a hidden emoji in each of <b>6 categories</b>.</li>
+    <li><b>Press &amp; hold</b> the board to look through the spyglass. The clock only runs while you hold.</li>
+    <li><b>Type your guess anytime.</b> Close spellings count. A wrong guess adds <b>+5s</b>.</li>
+    <li>Get all 6 with the <b>lowest total time</b>, then share it.</li>
   </ol>
-  <form method="dialog"><button class="btn primary" style="width:100%">Let's peek!</button></form>
+  <form method="dialog"><button class="btn primary" style="width:100%">Let's look!</button></form>
 </dialog>
 
 <dialog id="statsDlg">
@@ -150,6 +154,8 @@ dialog ol{padding-left:1.2em;margin:0 0 16px}dialog li{margin:6px 0}
 
 <div class="toast" id="toast"></div>
 
+<script src="shared/common.js"></script>
+<script src="shared/spyglass.js"></script>
 <script src="data.js"></script>
 <script src="game.js"></script>
 </body>

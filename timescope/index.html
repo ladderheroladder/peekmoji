@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timescope — where and when was this photo taken?</title>
+<meta name="description" content="5 historical photos every day. Peek through the spyglass, pin the place on a map, pick the year, and share your score.">
+<meta property="og:title" content="Timescope 🔭">
+<meta property="og:description" content="Where and when was this photo taken? 5 historical photos every day.">
+<meta name="theme-color" content="#e8912d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<!-- ADS: once AdSense approves you, paste its <script async src="https://pagead2.googlesyndication.com/..."> tag here -->
+<style>
+:root{--bg:#fbf4e8;--card:#fff;--ink:#231d16;--muted:#7a6f62;--line:#eee2cf;--accent:#e8912d;--accent-dark:#b3651a;--accent2:#2f7fbf;--good:#16a263;--bad:#e5484d;--cover:#2b2438;--dot:#40365a;--reveal:#14121c;--ocean:#cfe3ee;--land:#f6eedd;--border:rgba(60,45,30,.35);--shadow:0 10px 30px rgba(60,30,10,.13)}
+@media (prefers-color-scheme:dark){:root{--bg:#14121a;--card:#201d29;--ink:#f4efe6;--muted:#a49cb0;--line:#332e40;--cover:#2f2946;--dot:#453c68;--ocean:#1c2838;--land:#3b3548;--border:rgba(255,255,255,.22);--shadow:0 10px 30px rgba(0,0,0,.45)}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:600 16px/1.4 "Nunito",ui-rounded,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 16px;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit}
+a{color:var(--accent2)}
+.top{width:100%;max-width:520px;display:flex;align-items:center;justify-content:space-between;padding:14px 0 4px}
+.logo{font:700 2rem/1 "Fredoka",ui-rounded,system-ui,sans-serif;margin:0;letter-spacing:-.5px}
+.logo span{color:var(--accent)}
+.icon-btn{width:42px;height:42px;border-radius:13px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:700 1.1rem "Fredoka",system-ui,sans-serif;cursor:pointer}
+.wrap{width:100%;max-width:520px;display:flex;flex-direction:column;gap:12px;flex:1}
+.sub{margin:0;text-align:center;color:var(--muted);font-weight:800}
+.dots{display:flex;justify-content:center;gap:8px}
+.dots i{width:30px;height:8px;border-radius:9px;background:var(--line)}
+.dots i.on{outline:2px solid var(--ink);outline-offset:2px}
+.dots i.g{background:var(--good)}.dots i.y{background:#e0b72b}.dots i.o{background:var(--accent)}.dots i.r{background:var(--bad)}
+.board-wrap{position:relative;width:100%;aspect-ratio:4/3}
+#board{width:100%;height:100%;display:block;border-radius:22px;box-shadow:var(--shadow);cursor:zoom-in;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.hint{position:absolute;left:0;right:0;bottom:16px;text-align:center;color:#fff;font-weight:800;pointer-events:none;text-shadow:0 2px 8px rgba(0,0,0,.6);animation:bob 1.6s ease-in-out infinite}
+.meter{display:flex;justify-content:center;gap:16px;color:var(--muted);font-weight:800;font-size:.95rem;flex-wrap:wrap}
+.meter b{color:var(--ink);font-variant-numeric:tabular-nums}
+.meter .pen{color:var(--bad)}
+.map-wrap{position:relative;width:100%;aspect-ratio:2/1;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+#map{width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.zoom{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:6px}
+.zoom button{width:36px;height:36px;border-radius:11px;border:0;background:var(--card);color:var(--ink);font:700 1.2rem "Fredoka",system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer}
+.map-hint{position:absolute;left:10px;bottom:8px;font-size:.8rem;font-weight:800;color:var(--muted);background:var(--card);padding:3px 9px;border-radius:999px;pointer-events:none;opacity:.92}
+.year{display:flex;align-items:center;gap:10px}
+.year button{width:44px;height:44px;border-radius:13px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:700 1.3rem "Fredoka",system-ui,sans-serif;cursor:pointer;flex:none}
+.year .mid{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.year output{font:700 1.8rem/1 "Fredoka",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.btn{height:54px;padding:0 20px;border-radius:15px;border:0;font:700 1.1rem "Fredoka",system-ui,sans-serif;cursor:pointer;background:var(--line);color:var(--ink)}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:0 4px 0 var(--accent-dark)}
+.btn:active{transform:translateY(2px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.wide{width:100%}
+.result{background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);display:grid;gap:6px}
+.result .row{display:flex;justify-content:space-between;gap:10px}
+.result .row b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.result .total{font:700 1.3rem "Fredoka",system-ui,sans-serif;border-top:2px dashed var(--line);padding-top:8px}
+.result .fact{color:var(--muted);margin:2px 0 0}
+.credit{font-size:.78rem;color:var(--muted)}
+.promo{display:block;text-align:center;padding:12px;border-radius:15px;border:2px dashed var(--line);font-weight:800;text-decoration:none}
+.ad-slot{min-height:90px;display:flex;justify-content:center}
+.ad-slot:empty{display:none}
+footer{padding:22px 0;color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:inherit}
+dialog{border:0;border-radius:26px;background:var(--card);color:var(--ink);padding:24px;width:min(92vw,420px);box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(20,15,30,.55);backdrop-filter:blur(3px)}
+dialog h2{font:700 1.5rem "Fredoka",system-ui,sans-serif;margin:0 0 12px;text-align:center}
+dialog ol{padding-left:1.2em;margin:0 0 16px}dialog li{margin:6px 0}
+.close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--line);color:var(--ink);cursor:pointer;font-weight:800}
+.big{font-size:4rem;text-align:center;line-height:1.1;animation:pop .5s}
+.rank{text-align:center;font:700 1.15rem "Fredoka",system-ui,sans-serif;color:var(--accent);margin:4px 0}
+.detail{text-align:center;color:var(--muted);margin:0 0 12px}
+.share-preview{white-space:pre-wrap;background:var(--bg);border-radius:15px;padding:12px 14px;margin:0 0 14px;font:700 .95rem/1.5 "Nunito",system-ui,sans-serif;word-break:break-word}
+.rowbtns{display:flex;gap:8px;flex-wrap:wrap}.rowbtns .btn{flex:1 1 40%}
+.countdown-line{text-align:center;color:var(--muted);font-size:.9rem;margin:14px 0 10px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:4px}
+.stats-grid b{display:block;font:700 1.4rem "Fredoka",system-ui,sans-serif}
+.stats-grid span{font-size:.75rem;color:var(--muted)}
+.toast{position:fixed;top:18px;left:50%;transform:translate(-50%,-160%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:800;transition:transform .25s;z-index:99}
+.toast.show{transform:translate(-50%,0)}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes bob{50%{transform:translateY(-5px)}}
+</style>
+</head>
+<body>
+<header class="top">
+  <button class="icon-btn" id="helpBtn" aria-label="How to play">?</button>
+  <h1 class="logo">Time<span>scope</span></h1>
+  <button class="icon-btn" id="statsBtn" aria-label="Stats">📊</button>
+</header>
+
+<main class="wrap">
+  <p class="sub" id="sub"></p>
+  <div class="dots" id="dots"></div>
+  <div class="ad-slot" id="ad-top"><!-- ADS: paste a responsive ad unit here --></div>
+
+  <section class="board-wrap">
+    <canvas id="board" aria-label="Hidden historical photo. Press and hold to look through the spyglass."></canvas>
+    <div class="hint" id="hint">Press &amp; hold to look 🔭</div>
+  </section>
+  <div class="meter">
+    <span>⏱ Looked <b id="looked">0.0s</b> <span class="pen" id="penalty"></span></span>
+    <span>⭐ Today <b id="total">0</b></span>
+  </div>
+
+  <section class="map-wrap">
+    <canvas id="map" aria-label="World map. Tap to place your guess."></canvas>
+    <div class="zoom"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button></div>
+    <div class="map-hint" id="mapHint">Tap the map to drop a pin 📍</div>
+  </section>
+
+  <div id="guessArea">
+    <div class="year">
+      <button id="yearDown" aria-label="Earlier">−</button>
+      <div class="mid">
+        <output id="yearOut">1920</output>
+        <input type="range" id="year" min="1840" max="2020" step="1" value="1920" aria-label="Year">
+      </div>
+      <button id="yearUp" aria-label="Later">+</button>
+    </div>
+    <button class="btn primary wide" id="lockBtn" style="margin-top:10px" disabled>Drop a pin first</button>
+  </div>
+
+  <section class="result" id="result" hidden>
+    <div class="row"><span id="rWhere"></span><b id="rWhereP"></b></div>
+    <div class="row"><span id="rWhen"></span><b id="rWhenP"></b></div>
+    <div class="row"><span id="rLook"></span><b id="rLookP"></b></div>
+    <div class="row total"><span>Photo score</span><b id="rTotal"></b></div>
+    <p class="fact" id="rFact"></p>
+    <div class="credit" id="rCredit"></div>
+    <button class="btn primary wide" id="nextBtn" style="margin-top:6px">Next photo →</button>
+  </section>
+
+  <a class="promo" href="../">🔭 Also try <b>Peekmoji</b>: 6 hidden emojis a day →</a>
+  <div class="ad-slot" id="ad-bottom"><!-- ADS: paste a second ad unit here --></div>
+</main>
+
+<footer>New photos every day at midnight · <span class="countdown"></span> · <a href="credits.html">Photo credits</a></footer>
+
+<dialog id="doneDlg">
+  <form method="dialog"><button class="close" aria-label="Close">✕</button></form>
+  <div class="big">🌍</div>
+  <h2 id="doneTitle">Daily complete!</h2>
+  <p class="rank" id="doneRank"></p>
+  <p class="detail" id="doneDetail"></p>
+  <pre class="share-preview" id="doneShare"></pre>
+  <div class="rowbtns">
+    <button class="btn primary" id="shareBtn" autofocus>Share 📤</button>
+    <button class="btn" id="reviewBtn">Review</button>
+  </div>
+  <p class="countdown-line">New photos in <b class="countdown"></b></p>
+  <a class="promo" href="../">🔭 Play today's <b>Peekmoji</b> too →</a>
+</dialog>
+
+<dialog id="helpDlg">
+  <form method="dialog"><button class="close" aria-label="Close">✕</button></form>
+  <h2>How to play 🌍</h2>
+  <ol>
+    <li>Every day there are <b>5 historical photos</b>, the same for everyone.</li>
+    <li><b>Press &amp; hold</b> the photo to look through the spyglass. Each second costs <b>100 points</b>.</li>
+    <li><b>Tap the map</b> where you think it was taken, and <b>slide to the year</b>.</li>
+    <li>Up to <b>10,000 points</b> per photo: 5,000 for where + 5,000 for when.</li>
+  </ol>
+  <form method="dialog"><button class="btn primary wide">Let's go!</button></form>
+</dialog>
+
+<dialog id="statsDlg">
+  <form method="dialog"><button class="close" aria-label="Close">✕</button></form>
+  <h2>Your stats 📊</h2>
+  <div class="stats-grid" id="statsGrid"></div>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script src="../shared/common.js"></script>
+<script src="../shared/spyglass.js"></script>
+<script src="world.js"></script>
+<script src="photos.js"></script>
+<script src="map.js"></script>
+<script src="time.js"></script>
+</body>
+</html>

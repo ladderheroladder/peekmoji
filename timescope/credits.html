@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timescope — photo credits</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#fbf4e8;--card:#fff;--ink:#231d16;--muted:#7a6f62;--line:#eee2cf;--link:#2f7fbf}
+@media (prefers-color-scheme:dark){:root{--bg:#14121a;--card:#201d29;--ink:#f4efe6;--muted:#a49cb0;--line:#332e40;--link:#7fb8e6}}
+body{margin:0;padding:24px 16px;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif}
+main{max-width:720px;margin:0 auto}
+h1{margin:0 0 4px}p{color:var(--muted)}a{color:var(--link)}
+ul{list-style:none;padding:0;display:grid;gap:8px}
+li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+li b{display:block}li span{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Back to Timescope</a></p>
+  <h1>Photo credits</h1>
+  <p>⚠️ Spoilers: this page lists every answer. All photos come from Wikimedia Commons and are in the public domain or openly licensed. Captions, watermarks and mounts were cropped out for the game.</p>
+  <ul id="list"></ul>
+</main>
+<script src="photos.js"></script>
+<script>
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+document.getElementById('list').innerHTML = TIMESCOPE_PHOTOS.map(p =>
+  `<li><b>${esc(p.place)}, ${p.year}</b><span>${esc(p.credit.artist)} · ${esc(p.credit.license)} · <a href="${esc(p.credit.page)}" target="_blank" rel="noopener">Wikimedia Commons</a></span></li>`
+).join('');
+</script>
+</body>
+</html>
