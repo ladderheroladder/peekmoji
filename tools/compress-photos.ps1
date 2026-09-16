@@ -10,6 +10,7 @@ $max = 1280
 Get-ChildItem $dir -File | Where-Object { $_.Extension -in '.jpg', '.png' } | ForEach-Object {
   $before = $_.Length
   $img = [System.Drawing.Image]::FromFile($_.FullName)
+  if ($_.Extension -eq '.jpg' -and [Math]::Max($img.Width, $img.Height) -le $max) { $img.Dispose(); return }   # already web-sized: don't re-encode
   $scale = [Math]::Min(1.0, $max / [Math]::Max($img.Width, $img.Height))
   $w = [int]($img.Width * $scale); $h = [int]($img.Height * $scale)
   $bmp = New-Object System.Drawing.Bitmap $w, $h

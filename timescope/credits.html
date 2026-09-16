@@ -23,7 +23,7 @@ li b{display:block}li span{color:var(--muted);font-size:.9rem}
   <p>⚠️ Spoilers: this page lists every answer. All photos come from Wikimedia Commons and are in the public domain or openly licensed. Captions, watermarks and mounts were cropped out for the game.</p>
   <ul id="list"></ul>
 </main>
-<script src="photos.js"></script>
+<script src="photos.js?v=4"></script>
 <script>
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 document.getElementById('list').innerHTML = TIMESCOPE_PHOTOS.map(p =>

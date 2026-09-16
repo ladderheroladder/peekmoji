@@ -559,5 +559,355 @@ window.TIMESCOPE_PHOTOS = [
    "license": "Public domain",
    "page": "https://commons.wikimedia.org/wiki/File:Cathedral_of_Mexico_City,_Mexico,_ca.1905-1910_(CHS-667).jpg"
   }
+ },
+ {
+  "id": "obama-inauguration-2009",
+  "place": "National Mall, Washington, D.C., USA",
+  "lat": 38.8893,
+  "lng": -77.02,
+  "year": 2009,
+  "fact": "About 1.8 million people packed the National Mall for Barack Obama's first inauguration.",
+  "src": "photos/obama-inauguration-2009.jpg",
+  "credit": {
+   "artist": "Senior Master Sgt. Thomas Meneguin, USAF",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Crowd_at_National_Mall_for_Obama_inauguration_1-20-09_hires_090120-F-6184M-007a.jpg"
+  }
+ },
+ {
+  "id": "trump-inauguration-2017",
+  "place": "U.S. Capitol, Washington, D.C., USA",
+  "lat": 38.8898,
+  "lng": -77.0106,
+  "year": 2017,
+  "fact": "Donald Trump waves to the crowd after being sworn in as the 45th president.",
+  "src": "photos/trump-inauguration-2017.jpg",
+  "credit": {
+   "artist": "Staff Sgt. Marianique Santos",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Obama_hands_over_presidency_to_Trump_at_58th_Presidential_Inauguration_170120-D-NA975-0804.jpg"
+  }
+ },
+ {
+  "id": "biden-inauguration-2021",
+  "place": "U.S. Capitol, Washington, D.C., USA",
+  "lat": 38.8898,
+  "lng": -77.0106,
+  "year": 2021,
+  "fact": "Joe Biden's inauguration was held with masks and a tiny crowd during the COVID-19 pandemic.",
+  "src": "photos/biden-inauguration-2021.jpg",
+  "credit": {
+   "artist": "Chairman of the Joint Chiefs of Staff from Washington D.C, United States",
+   "license": "CC BY 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:210120-D-WD757-1595_Kamala_Harris_claps_for_Joe_Biden_at_his_inauguration_(50860518413).jpg"
+  }
+ },
+ {
+  "id": "lula-inauguration-2023",
+  "place": "Brasília, Brazil",
+  "lat": -15.7998,
+  "lng": -47.8645,
+  "year": 2023,
+  "fact": "Lula was sworn in as Brazil's president for the third time.",
+  "src": "photos/lula-inauguration-2023.jpg",
+  "credit": {
+   "artist": "Sintegrity",
+   "license": "CC BY-SA 4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Bras%C3%ADlia_-_Posse_de_Luiz_In%C3%A1cio_Lula_da_Silva_2023_(114).jpg"
+  }
+ },
+ {
+  "id": "portal-2024",
+  "place": "Flatiron District, New York City, USA",
+  "lat": 40.7406,
+  "lng": -73.9894,
+  "year": 2024,
+  "fact": "The Portal livestreamed New York and Dublin to each other around the clock.",
+  "src": "photos/portal-2024.jpg",
+  "credit": {
+   "artist": "Rhododendrites",
+   "license": "CC BY-SA 4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:NYC_Portal_(51331).jpg"
+  }
+ },
+ {
+  "id": "endeavour-2012",
+  "place": "Inglewood, Los Angeles, USA",
+  "lat": 33.9601,
+  "lng": -118.3441,
+  "year": 2012,
+  "fact": "Space Shuttle Endeavour crawled 12 miles through Los Angeles streets to its museum.",
+  "src": "photos/endeavour-2012.jpg",
+  "credit": {
+   "artist": "Pedro Szekely from Los Angeles, USA",
+   "license": "CC BY-SA 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Space_Shuttle_Endeavour_in_Los_Angeles_-_2012_(37919560104).jpg"
+  }
+ },
+ {
+  "id": "notre-dame-fire-2019",
+  "place": "Notre-Dame, Paris, France",
+  "lat": 48.853,
+  "lng": 2.3499,
+  "year": 2019,
+  "fact": "Notre-Dame's spire in flames, shortly before it collapsed.",
+  "src": "photos/notre-dame-fire-2019.jpg",
+  "credit": {
+   "artist": "LEVRIER Guillaume",
+   "license": "CC BY-SA 4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Fl%C3%A8che_en_feu_-_Spire_on_Fire.jpeg"
+  }
+ },
+ {
+  "id": "paris-olympics-2024",
+  "place": "River Seine, Paris, France",
+  "lat": 48.858,
+  "lng": 2.3,
+  "year": 2024,
+  "fact": "The first Olympic opening ceremony held outside a stadium, with athletes on boats along the Seine.",
+  "src": "photos/paris-olympics-2024.jpg",
+  "credit": {
+   "artist": "Sgt. 1st Class Kulani Lakanaria",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:U.S._Olympic_Team_participates_in_2024_Opening_Ceremonies_in_Paris_(240726-A-UW671-1010).jpg"
+  }
+ },
+ {
+  "id": "coronation-2023",
+  "place": "Buckingham Palace, London, UK",
+  "lat": 51.5014,
+  "lng": -0.1419,
+  "year": 2023,
+  "fact": "The royal family on the palace balcony after the coronation of King Charles III.",
+  "src": "photos/coronation-2023.jpg",
+  "credit": {
+   "artist": "Pail Clarke, Department for Culture, Media &amp; Sport",
+   "license": "OGL 3",
+   "page": "https://commons.wikimedia.org/wiki/File:2023_Coronation,_Buckingham_Palace_Balcony.jpg"
+  }
+ },
+ {
+  "id": "berlin-wall-1989",
+  "place": "Brandenburg Gate, Berlin, Germany",
+  "lat": 52.5163,
+  "lng": 13.3777,
+  "year": 1989,
+  "fact": "East and West Germans meet at a new gap in the Berlin Wall by the Brandenburg Gate.",
+  "src": "photos/berlin-wall-1989.jpg",
+  "credit": {
+   "artist": "SSGT F. Lee Corkran",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Crane_removed_part_of_Wall_Brandenburg_Gate.jpg"
+  }
+ },
+ {
+  "id": "chile-mine-rescue-2010",
+  "place": "San José Mine, near Copiapó, Chile",
+  "lat": -27.15,
+  "lng": -70.5,
+  "year": 2010,
+  "fact": "Rescuers prepare to lift 33 trapped miners after 69 days underground.",
+  "src": "photos/chile-mine-rescue-2010.jpg",
+  "credit": {
+   "artist": "Secretaria de Comunicaciones from Chile",
+   "license": "CC BY 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Chile_Mine_Rescue_(5075429001).jpg"
+  }
+ },
+ {
+  "id": "eyjafjallajokull-2010",
+  "place": "Eyjafjallajökull, Iceland",
+  "lat": 63.6314,
+  "lng": -19.6083,
+  "year": 2010,
+  "fact": "The Icelandic eruption whose ash cloud grounded flights across Europe.",
+  "src": "photos/eyjafjallajokull-2010.jpg",
+  "credit": {
+   "artist": "Bjarki Sigursveinsson",
+   "license": "CC BY-SA 3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Eyjafjallaj%C3%B6kull_17-4-2010.jpg"
+  }
+ },
+ {
+  "id": "beijing-olympics-2008",
+  "place": "Beijing National Stadium, China",
+  "lat": 39.9916,
+  "lng": 116.3906,
+  "year": 2008,
+  "fact": "The opening ceremony of the Beijing Olympics in the 'Bird's Nest' stadium.",
+  "src": "photos/beijing-olympics-2008.jpg",
+  "credit": {
+   "artist": "Tim Hipps, U.S. Army",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Li_Ling_during_the_Opening_Ceremony_of_the_2008_Olympic_Games.jpg"
+  }
+ },
+ {
+  "id": "tahrir-square-2011",
+  "place": "Tahrir Square, Cairo, Egypt",
+  "lat": 30.0444,
+  "lng": 31.2357,
+  "year": 2011,
+  "fact": "Crowds greet soldiers in Tahrir Square during Egypt's 2011 revolution.",
+  "src": "photos/tahrir-square-2011.jpg",
+  "credit": {
+   "artist": "Alisdare Hickson from Canterbury, United Kingdom",
+   "license": "CC BY-SA 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Tahrir_Square_29_January_2011_-_%22The_people_and_the_army_are_one_hand%22_(40339040312).jpg"
+  }
+ },
+ {
+  "id": "rio-olympics-2016",
+  "place": "Maracanã Stadium, Rio de Janeiro, Brazil",
+  "lat": -22.9121,
+  "lng": -43.2302,
+  "year": 2016,
+  "fact": "The opening ceremony of the first Olympics held in South America.",
+  "src": "photos/rio-olympics-2016.jpg",
+  "credit": {
+   "artist": "Agência Brasil",
+   "license": "CC BY 3.0 br",
+   "page": "https://commons.wikimedia.org/wiki/File:2016_Summer_Olympics_opening_ceremony_1035369-olimpiadas_abertura-2902.jpg"
+  }
+ },
+ {
+  "id": "starship-2023",
+  "place": "Starbase, Boca Chica, Texas, USA",
+  "lat": 25.9972,
+  "lng": -97.1566,
+  "year": 2023,
+  "fact": "SpaceX's giant Super Heavy booster on its launch pad in South Texas.",
+  "src": "photos/starship-2023.jpg",
+  "credit": {
+   "artist": "Mobilus In Mobili",
+   "license": "CC BY-SA 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:SpaceX_Starship_Superheavy_Testing_February_2023.jpg"
+  }
+ },
+ {
+  "id": "hiroshima-visit-2016",
+  "place": "Hiroshima, Japan",
+  "lat": 34.3915,
+  "lng": 132.453,
+  "year": 2016,
+  "fact": "Barack Obama became the first sitting US president to visit Hiroshima.",
+  "src": "photos/hiroshima-visit-2016.jpg",
+  "credit": {
+   "artist": "White House",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Barack_Obama_and_Shinzo_Abe_at_Hiroshima_Peace_Memorial_Park.jpg"
+  }
+ },
+ {
+  "id": "dmz-summit-2019",
+  "place": "Panmunjom, Korean DMZ",
+  "lat": 37.9559,
+  "lng": 126.6772,
+  "year": 2019,
+  "fact": "Donald Trump became the first sitting US president to step into North Korea.",
+  "src": "photos/dmz-summit-2019.jpg",
+  "credit": {
+   "artist": "Harry Harris",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Donald_Trump_and_Kim_Jong_Un_after_DMZ_Summit.jpg"
+  }
+ },
+ {
+  "id": "katrina-2005",
+  "place": "New Orleans, Louisiana, USA",
+  "lat": 29.9511,
+  "lng": -90.0715,
+  "year": 2005,
+  "fact": "Much of New Orleans was still underwater days after Hurricane Katrina.",
+  "src": "photos/katrina-2005.jpg",
+  "credit": {
+   "artist": "U.S. Navy photo by Gary Nichols",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:US_Navy_050902-N-5328N-228_Four_days_after_Hurricane_Katrina_made_landfall_on_the_Gulf_Coast,_many_parts_of_New_Orleans_remain_flooded.jpg"
+  }
+ },
+ {
+  "id": "artemis-2022",
+  "place": "Kennedy Space Center, Florida, USA",
+  "lat": 28.6272,
+  "lng": -80.6208,
+  "year": 2022,
+  "fact": "Artemis I launched NASA's program to send astronauts back to the Moon.",
+  "src": "photos/artemis-2022.jpg",
+  "credit": {
+   "artist": "NASA/STEVEN SEIPEL",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Launch_of_Artemis_1_(KSC_20221115_Artemis_I_Launch-2).jpg"
+  }
+ },
+ {
+  "id": "pyeongchang-2018",
+  "place": "PyeongChang, South Korea",
+  "lat": 37.6663,
+  "lng": 128.6992,
+  "year": 2018,
+  "fact": "The opening ceremony of the PyeongChang Winter Olympics.",
+  "src": "photos/pyeongchang-2018.jpg",
+  "credit": {
+   "artist": "Korea.net",
+   "license": "CC BY-SA 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:PyeongChang_Olympic_Opening_Ceremony_14.jpg"
+  }
+ },
+ {
+  "id": "modi-oath-2014",
+  "place": "Rashtrapati Bhavan, New Delhi, India",
+  "lat": 28.6143,
+  "lng": 77.1994,
+  "year": 2014,
+  "fact": "Narendra Modi takes the oath of office as India's prime minister.",
+  "src": "photos/modi-oath-2014.jpg",
+  "credit": {
+   "artist": "Prime Minister's Office",
+   "license": "GODL-India",
+   "page": "https://commons.wikimedia.org/wiki/File:The_President,_Shri_Pranab_Mukherjee_administering_the_oath_of_office_of_the_Prime_Minister_to_Shri_Narendra_Modi,_at_a_Swearing-in_Ceremony,_at_Rashtrapati_Bhavan,_in_New_Delhi_on_May_26,_2014.jpg"
+  }
+ },
+ {
+  "id": "london-olympics-2012",
+  "place": "Olympic Park, London, UK",
+  "lat": 51.5383,
+  "lng": -0.0166,
+  "year": 2012,
+  "fact": "The Olympic Stadium lit up on the night of the London 2012 opening ceremony.",
+  "src": "photos/london-olympics-2012.jpg",
+  "credit": {
+   "artist": "Alexander Kachkaev",
+   "license": "CC BY 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Olympic_stadium_and_The_Orbit_during_London_Olympics_opening_ceremony_(2012-07-27)_2.jpg"
+  }
+ },
+ {
+  "id": "skytree-2010",
+  "place": "Tokyo, Japan",
+  "lat": 35.7101,
+  "lng": 139.8107,
+  "year": 2010,
+  "fact": "Tokyo Skytree halfway built. It became the world's tallest tower.",
+  "src": "photos/skytree-2010.jpg",
+  "credit": {
+   "artist": "yuiseki aoba",
+   "license": "CC BY 2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Tokyo_Skytree_under_construction_-_Jan_16,_2010.jpg"
+  }
+ },
+ {
+  "id": "ever-given-2021",
+  "place": "Suez Canal, Egypt",
+  "lat": 30.0176,
+  "lng": 32.58,
+  "year": 2021,
+  "fact": "The container ship Ever Given, stuck sideways across the Suez Canal, seen from the space station.",
+  "src": "photos/ever-given-2021.jpg",
+  "credit": {
+   "artist": "NASA JSC ISS image library",
+   "license": "Public domain",
+   "page": "https://commons.wikimedia.org/wiki/File:Ever_Given_in_Suez_Canal_viewed_from_ISS.jpg"
+  }
  }
 ];

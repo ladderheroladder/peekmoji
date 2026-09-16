@@ -5,7 +5,7 @@ const { $, dayIndex, dailyPick, storage, pref, share, startCountdown, siteUrl, s
 // ---- Config ----
 const EPOCH = [2026, 8, 15];        // Sept 15, 2026 = daily #1 (month is 0-based)
 const ROUNDS = 5;
-const YEAR_MIN = 1840, YEAR_MAX = 2020, YEAR_START = 1920;
+const YEAR_MIN = 1840, YEAR_MAX = new Date().getFullYear(), YEAR_START = 1930;
 const LOOK_PER_SEC = 100, LOOK_CAP = 3000;   // spyglass cost
 const SITE_URL = siteUrl('https://ladderheroladder.github.io/peekmoji/timescope/');
 
@@ -17,7 +17,10 @@ const today = dayIndex(EPOCH);
 const photos = dailyPick(window.TIMESCOPE_PHOTOS, 'timescope', today, ROUNDS);
 const db = storage('timescope:v1', () => ({ days: {} }));
 const store = db.load();
-const day = store.days[today] || (store.days[today] = { r: photos.map(() => ({ ms: 0, pin: null, year: YEAR_START, pts: null })) });
+// Saved progress is tied to the photo ids; if the photo pool changed (reshuffling today's set), start today fresh.
+const ids = photos.map(p => p.id).join(',');
+let day = store.days[today];
+if (!day || day.ids !== ids) day = store.days[today] = { ids, r: photos.map(() => ({ ms: 0, pin: null, year: YEAR_START, pts: null })) };
 const save = () => db.save(store);
 let viewing = 0, lastSave = 0;
 const cur = () => day.r[viewing];
@@ -93,6 +96,7 @@ map.on('click', e => {
 });
 
 const yearInput = $('#year');
+yearInput.max = YEAR_MAX;
 function showYear(v) { yearInput.value = v; $('#yearOut').textContent = v; }
 function setYear(v) {
   v = Math.max(YEAR_MIN, Math.min(YEAR_MAX, Math.round(v)));
