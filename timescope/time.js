@@ -69,17 +69,28 @@ function showLook(ms) {
 }
 
 // ---- Map & year ----
-const map = new WorldMap($('#map'), {
-  onTap(lon, lat) {
-    const r = cur();
-    if (r.pts) return;
-    r.pin = [+lon.toFixed(3), +lat.toFixed(3)];
-    save(); renderPins(); updateLock();
-    $('#mapHint').hidden = true;
-  }
+// Map tiles: Esri World Street Map (English labels down to street names, no API key).
+// Before running ads at scale, move to a provider account with a commercial plan (Esri Location Platform,
+// MapTiler, Stadia Maps, Mapbox...) by changing TILES and TILE_ATTRIBUTION.
+const ESRI_STREETS = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
+const TILES = { light: ESRI_STREETS, dark: ESRI_STREETS };
+const TILE_ATTRIBUTION = 'Tiles &copy; <a href="https://www.esri.com" target="_blank" rel="noopener">Esri</a> &mdash; Esri, HERE, Garmin, USGS, OpenStreetMap';
+const WORLD_VIEW = [[25, 10], 1];
+const darkMode = matchMedia('(prefers-color-scheme: dark)');
+
+const map = L.map('map', { worldCopyJump: true, minZoom: 1, maxZoom: 20, zoomSnap: 0.5, maxBounds: [[-85, -540], [85, 540]], maxBoundsViscosity: 1 })
+  .setView(...WORLD_VIEW);
+map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
+const tiles = L.tileLayer(TILES[darkMode.matches ? 'dark' : 'light'], { maxNativeZoom: 19, maxZoom: 20, attribution: TILE_ATTRIBUTION }).addTo(map);
+darkMode.addEventListener?.('change', e => { tiles.setUrl(TILES[e.matches ? 'dark' : 'light']); renderPins(); });
+const wrapLon = lon => ((lon + 180) % 360 + 360) % 360 - 180;
+map.on('click', e => {
+  const r = cur();
+  if (r.pts) return;
+  r.pin = [+wrapLon(e.latlng.lng).toFixed(5), +e.latlng.lat.toFixed(5)];
+  $('#mapHint').hidden = true;
+  save(); renderPins(); updateLock();
 });
-$('#zoomIn').onclick = () => map.zoomBy(1.8);
-$('#zoomOut').onclick = () => map.zoomBy(1 / 1.8);
 
 const yearInput = $('#year');
 function showYear(v) { yearInput.value = v; $('#yearOut').textContent = v; }
@@ -92,11 +103,18 @@ yearInput.addEventListener('input', () => setYear(+yearInput.value));
 $('#yearDown').onclick = () => setYear(+yearInput.value - 1);
 $('#yearUp').onclick = () => setYear(+yearInput.value + 1);
 
+const pinIcon = kind => L.divIcon({ className: 'pin ' + kind, iconSize: [26, 30], iconAnchor: [13, 28] });
+let mapMarks = [];
 function renderPins() {
-  const r = cur(), p = photos[viewing], pins = [];
-  if (r.pin) pins.push({ lon: r.pin[0], lat: r.pin[1], color: '#e5484d' });
-  if (r.pts) pins.push({ lon: p.lng, lat: p.lat, color: '#16a263' });
-  map.setPins(pins, r.pts && r.pin ? [r.pin, [p.lng, p.lat]] : null);
+  const r = cur(), p = photos[viewing];
+  mapMarks.forEach(m => m.remove());
+  mapMarks = [];
+  if (r.pin) mapMarks.push(L.marker([r.pin[1], r.pin[0]], { icon: pinIcon('guess'), interactive: false, keyboard: false }));
+  if (r.pts) {
+    mapMarks.push(L.marker([p.lat, p.lng], { icon: pinIcon('answer'), interactive: false, keyboard: false }));
+    if (r.pin) mapMarks.push(L.polyline([[r.pin[1], r.pin[0]], [p.lat, p.lng]], { color: '#231d16', weight: 2.5, dashArray: '6 6', interactive: false }));
+  }
+  mapMarks.forEach(m => m.addTo(map));
 }
 function updateLock() {
   const b = $('#lockBtn'), has = !!cur().pin;
@@ -117,7 +135,7 @@ function load(i) {
   if (r.pts) showResult(false);
   else {
     $('#result').hidden = true; $('#guessArea').hidden = false;
-    map.enabled = true; map.reset(); renderPins(); updateLock();
+    map.setView(...WORLD_VIEW); renderPins(); updateLock();
   }
   renderHeader();
 }
@@ -128,6 +146,7 @@ $('#lockBtn').addEventListener('click', () => {
   r.year = +yearInput.value;
   r.pts = score(r, photos[viewing]);
   save();
+  $('#hint').hidden = true;
   sg.reveal();
   showResult(true);
   renderHeader();
@@ -135,7 +154,6 @@ $('#lockBtn').addEventListener('click', () => {
 function showResult(fresh) {
   const r = cur(), p = photos[viewing], s = r.pts;
   $('#guessArea').hidden = true; $('#result').hidden = false;
-  map.enabled = false;
   $('#rWhere').textContent = `📍 ${p.place} · ${fmt(s.km)} km away`;
   $('#rWhereP').textContent = '+' + fmt(s.where);
   $('#rWhen').textContent = `📅 ${p.year} · you said ${r.year}` + (s.yrs ? ` (${s.yrs} off)` : ' 🎯');
@@ -148,7 +166,7 @@ function showResult(fresh) {
   const allDone = day.r.every(x => x.pts);
   $('#nextBtn').textContent = allDone && viewing === ROUNDS - 1 ? 'See results 🏁' : 'Next photo →';
   renderPins();
-  map.fit([r.pin, [p.lng, p.lat]]);
+  map.fitBounds([[r.pin[1], r.pin[0]], [p.lat, p.lng]], { padding: [40, 40], maxZoom: 13 });
   if (fresh) $('#result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 $('#nextBtn').addEventListener('click', () => {
